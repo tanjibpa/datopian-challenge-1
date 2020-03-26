@@ -1,0 +1,58 @@
+{
+  "name": "henry-hub-natural-gas-spot-price",
+  "title": "Henry Hub Natural Gas Spot Price",
+  "description": "Daily and Monthly gas price",
+  "vesion": "1.0",
+  "sources": [
+    {
+      "title": "U.S. Energy Information Administration",
+      "path": "https://www.eia.gov/dnav/ng/hist/rngwhhdD.htm"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "Ikramul Alam",
+      "email": "ikram.tanjib@gmail.com",
+      "path": "http://www.ikramul.xyz",
+      "role": "author"
+    }
+  ],
+  "resources": [
+    {
+      "name": "daily_price",
+      "path": "henry_hub_natural_daily_price.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "Date",
+            "description": "",
+            "type": "date",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "Price",
+            "description": "",
+            "type": "number"
+          }
+        ]
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "graph",
+      "label": "Daily Price Graph",
+      "resources": ["daily_price"],
+      "type": "Graph",
+      "state": {
+        "group": "Date",
+        "series": [
+          "Price"
+        ],
+        "graphType": "lines-and-points"
+      }
+    }
+  ]
+}

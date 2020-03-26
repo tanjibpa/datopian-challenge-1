@@ -17,6 +17,8 @@ rows = table.find_all("tr")
 f = open("henry_hub_natural_daily_price.csv", "w")
 writer = csv.writer(f)
 
+writer.writerow(["Date", "Price"])
+
 for row in rows[1:]:
     tds = [td.string for td in row.find_all("td")]
     if tds[0]:
@@ -31,7 +33,8 @@ for row in rows[1:]:
         )
 
         for dt, price in zip(dates, tds[1:]):
-            writer.writerow([dt.strftime("%b %d, %Y"), price])
+            if price:
+                writer.writerow([dt.isoformat(), price])
 
 f.close()
 print("Done!")
